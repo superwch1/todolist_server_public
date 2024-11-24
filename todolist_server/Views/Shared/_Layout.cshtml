@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDoList</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/x-icon" href="~/lib/icon.png">
+    @if (ViewData["Action"] as string == "Task")
+    {
+        <link href="~/css/Table.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+    }
+    else if (ViewData["Action"] as string == "Login")
+    {
+        <link href="~/css/Login.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+        <link href="~/css/Form.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+    }
+    else if (ViewData["Action"] as string == "RegisterAccount" || ViewData["Action"] as string == "ForgetPassword" || ViewData["Action"] as string == "VerifyPasscode" ||
+    ViewData["Action"] as string == "ResetPassword")
+    {
+        <link href="~/css/Form.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    
+    
+</head>
+<body style="font-size: 18px; background-color: #f3f4e8">
+
+    @RenderBody() 
+
+    <footer class="footer fixed-bottom text-right">
+        <p class="mr-3 mb-0 py-1" style="font-size: 14px">ToDoList - By Fiona Chan &amp John Wong</p>
+    </footer>
+
+    <script src="~/js/jQuery/jQuery.js" type="text/javascript"></script>
+    <script src="~/js/jQuery/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/js/jQuery/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+
+    @if(ViewData["Action"] as string == "Task")
+    {
+        <script src="~/js/signalr/signalr.js"></script>
+        <script src="~/js/table/DragAndDrop.js" type="text/javascript" asp-append-version="true"></script>
+        <script src="~/js/table/Button.js" type="text/javascript" asp-append-version="true"></script>
+        <script src="~/js/table/TableRow.js" type="text/javascript" asp-append-version="true"></script>
+        <script src="~/js/BuildSignalR.js" asp-append-version="true"></script>
+        <script src="~/js/HeaderAndFooter.js" type="text/javascript" asp-append-version="true"></script>
+        <script src="~/js/InitializeTable.js" type="text/javascript" asp-append-version="true"></script>
+    }
+</body>
+</html>

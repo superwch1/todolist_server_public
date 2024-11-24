@@ -1,0 +1,24 @@
+﻿@model string
+
+<div>
+    <div id="header" class="d-flex justify-content-between align-items-bottom mr-auto ml-auto mt-5" style="display: inline-block; position: relative">
+        <div>
+            <img id="home-icon" src="~/lib/icon.png"/>
+
+            <div class="d-inline-block align-bottom">
+                <input id="selectedTime" class="ml-2 mr-5" type="month" value="@ViewData["year"]-@ViewData["month"]" onkeydown="event.preventDefault()" required="required" />
+            </div>
+        </div>
+
+        <div class="d-flex align-items-end" >
+            <input id="searchBar" type="text" style="background: transparent; border-bottom: 1px solid #57472a;" />
+            <img class="search-icon" src="~/lib/len.png" style="border-bottom: 1px solid #57472a;" />
+
+            <a asp-action="logout" class="ml-3">
+                <div id="logout-icon" class="d-flex justify-content-center align-items-center">
+                    <img id="logout-image" src="~/lib/logout.png" />
+                </div>
+            </a>        
+        </div>
+    </div>
+</div>

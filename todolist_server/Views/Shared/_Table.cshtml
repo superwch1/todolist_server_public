@@ -1,0 +1,47 @@
+﻿@model dynamic
+@{
+    string type = @Model.type == "new-my-task" ? "My Task" : "Follow-up Task";
+    string backgroundColor = @Model.type == "new-my-task" ? "#d9e6d3" : "#d3dee6";
+    string visibility = @Model.tasks.Count > 0 ? "" : "d-none";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-2" style="height: 40px">
+    <div data-type="@Model.type" class="task-type d-flex align-items-center">
+        <h3 id="table-header" class="m-0 align-self-center" style="color: #57472a">@type</h3>
+        <img id="@Model.type-show" class="visibility-icon ml-2" src="~/lib/table-icon/down-arrow.png" />
+        <img id="@Model.type-hide" class="visibility-icon ml-2 d-none" src="~/lib/table-icon/up-arrow.png" />
+    </div>
+
+    <button id="@Model.type-button" 
+        class="table-add-button btn btn-secondary table-button align-items-center justify-content-center p-0"
+            style="background-color: #ffef7c; color: #57472a; border: 2px solid #57472a;">
+        <p style="font-weight: bold; " class="mb-0">Add +</p>
+    </button>
+</div>
+
+<div id="@Model.type-table">
+    <div id="@Model.type-tbody" class="tbody">
+        @foreach(var data in @Model.tasks)
+        {
+            <div id="@data.Id-taskRow" data-intType="@data.IntType" data-index="@data.Id" data-modify="false"  class='row task-row m-0 mb-3 px-1 py-2'
+                 style="background-color:@((data.DueDate < DateTime.Today && data.IntSymbol == 0) ? "#f5c6cb" : @backgroundColor)">
+                <div id="@data.Id-topic" data-text="[topic]" class="task-topic px-3">@data.Topic</div>
+                <div id="@data.Id-content" data-text="[content]" class="task-content">@data.Content</div>
+                <div id="@data.Id-intSymbol" data-index="@data.Id" class="text-center task-int-symbol">@(data.IntSymbol == 0 ? "✖" : "✔")</div>
+                <div class="task-due-date">
+                    <input id="@data.Id-dueDate" class="text-center" type="date" value="@data.DueDate.ToString("yyyy-MM-dd")" readonly />
+                </div>
+
+                <div class="text-center task-button">
+                    <img id="@data.Id-modify" data-index="@data.Id" class="task-button-modify task-icon mr-1" src="~/lib/table-icon/static-modify.png" />
+                    <img id="@data.Id-save" data-index="@data.Id" class="task-button-save task-icon mr-1 d-none" src="~/lib/table-icon/static-save.png" />
+                    <img id="@data.Id-delete" data-index="@data.Id" class="task-button-delete task-icon" src="~/lib/table-icon/static-delete.png" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+

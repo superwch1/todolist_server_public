@@ -1,0 +1,57 @@
+﻿@model Account
+
+<div class="d-flex flex-row justify-content-center align-items-start">
+
+    <div id="form" class="d-flex flex-column justify-content-center align-items-center">
+
+        <a id="previous-arrow" class="d-flex align-self-start" asp-action="login">
+            <img style="height: 100%; width: 100%" src="~/lib/form/left-arrow.png" />
+        </a>
+
+        <form asp-action="RegisterAccount" method="post">
+
+            <h3 class="m-0 mb-4 table-header">Register Account</h3>
+
+            @if (ViewData.ModelState.ErrorCount > 0)
+            {
+                <div>
+                    @foreach (var modelStateKey in ViewData.ModelState.Keys)
+                    {
+                        if (modelStateKey.StartsWith("Custom_"))
+                        {
+                            foreach (var error in ViewData.ModelState[modelStateKey].Errors)
+                            {
+                                <span class="text-danger">@error.ErrorMessage</span>
+                            }
+                        }
+                    }
+                </div>
+            }
+
+            <div>
+                <label asp-for="Email" class="m-0 d-block">Email</label>
+                <input id="email-input" type="email" asp-for="Email" placeholder="abc@gmail.com" value="@Model?.Email" />
+                <span class="text-danger d-block" asp-validation-for="Email"></span>
+            </div>
+
+            <div>
+                <label asp-for="Password" class="m-0 mt-4 d-block">Password</label>
+                <input id="password-input" type="password" asp-for="Password" placeholder="••••••" />
+                <span class="text-danger d-block" asp-validation-for="Password"></span>
+            </div>
+
+            <div>
+                <label asp-for="ConfirmPassword" class="m-0 mt-4 d-block">ConfirmPassword</label>
+                <input id="confirm-password-input" type="password" asp-for="ConfirmPassword" placeholder="••••••" />
+                <span class="text-danger d-block" asp-validation-for="ConfirmPassword"></span>
+            </div>
+
+            <div class="mt-4" style="text-align: right">
+                <button id="submit-button" type="submit">GO</button>
+            </div>
+        </form>
+    </div>   
+</div>
+
+
+

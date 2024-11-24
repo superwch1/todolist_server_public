@@ -1,0 +1,26 @@
+﻿@model List<TaskInfo>
+
+<partial name="_Header" model="null" />
+
+<div id="table" class="mx-auto">
+    
+    <div id="new-my-task-div" class="mt-5 pb-5">
+        <partial name="_Table" 
+        model="@(new { tasks = Model
+                                .Where(x => x.IntType == 0)
+                                .OrderBy(x => x.IntSymbol)
+                                .ThenBy(x => x.DueDate)
+                                .ToList(), type = "new-my-task"});" />
+    </div>
+    
+                             
+    <div id="new-followup-task-div" class="pb-5">
+        <partial name="_Table" 
+        model="@(new { tasks = Model
+                                .Where(x => x.IntType == 1)
+                                .OrderBy(x => x.IntSymbol)
+                                .ThenBy(x => x.DueDate)
+                                .ToList(), type = "new-followup-task"});" />
+    </div>
+    
+</div>

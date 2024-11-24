@@ -1,0 +1,159 @@
+﻿@media only screen and (min-width: 1440px) {
+    @keyframes logo-enter {
+        0% {
+            transform: translateY(min(-55vh, -450px))
+        }
+
+        60% {
+            transform: translateY(40px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    @keyframes logo-leave {
+        0% {
+            transform: translateY(0px);
+        }
+
+        100% {
+            transform: translateY(min(-55vh, -450px));
+        }
+    }
+
+    @keyframes form-enter {
+        0% {
+            transform: translateY(80vh);
+        }
+        /* 100vh - marginTop */
+        60% {
+            transform: translateY(-40px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    @keyframes form-leave {
+        0% {
+            transform: translateY(0);
+        }
+
+        100% {
+            transform: translateY(80vh);
+        }
+    }
+
+    .logo-enter {
+        animation: logo-enter 2s 1 forwards;
+    }
+
+    .form-enter {
+        animation: form-enter 2s 1 forwards;
+    }
+
+    .logo-leave {
+        animation: logo-leave 1.2s 1 forwards;
+    }
+
+    .form-leave {
+        animation: form-leave 1.2s 1 forwards;
+    }
+
+    #logo {
+        height: max(55vh, 450px);
+        z-index: 1;
+        margin-right: -25px
+    }
+
+    body {
+        overflow-y: hidden;
+    }
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1439px) {
+    @keyframes logo-enter {
+        0% {
+            transform: translateY(min(-55vh, -450px))
+        }
+
+        60% {
+            transform: translateY(40px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    @keyframes logo-leave {
+        0% {
+            transform: translateY(0px);
+        }
+
+        100% {
+            transform: translateY(min(-55vh, -450px));
+        }
+    }
+
+    @keyframes form-enter {
+        0% {
+            transform: translateY(80vh);
+        }
+        /* 100vh - marginTop */
+        60% {
+            transform: translateY(-40px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    @keyframes form-leave {
+        0% {
+            transform: translateY(0);
+        }
+
+        100% {
+            transform: translateY(80vh);
+        }
+    }
+
+    .logo-enter {
+        animation: logo-enter 2s 1 forwards;
+    }
+
+    .form-enter {
+        animation: form-enter 2s 1 forwards;
+    }
+
+    .logo-leave {
+        animation: logo-leave 1.2s 1 forwards;
+    }
+
+    .form-leave {
+        animation: form-leave 1.2s 1 forwards;
+    }
+
+    #logo {
+        height: max(55vh, 450px);
+        z-index: 1;
+        margin-right: -25px
+    }
+
+    body {
+        overflow-y: hidden;
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    #logo {
+        display: none;
+    }
+}

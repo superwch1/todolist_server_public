@@ -1,0 +1,93 @@
+﻿@model Account
+
+@{
+    string logoClass = "", formClass = "";
+    if (ViewBag.Animation == "Enter")
+    {
+        logoClass = "logo-enter";
+        formClass = "form-enter";
+    }
+    else if (ViewBag.Animation == "Leave")
+    {
+        logoClass = "logo-leave";
+        formClass = "form-leave";
+    }
+}
+
+
+<div class="d-flex flex-row justify-content-center align-items-start">
+
+    <img id="logo" class="@logoClass" src="~/lib/login/holding-card.png"/>
+
+    <div id="form" class="@formClass d-flex flex-column justify-content-center align-items-center">
+        <form asp-action="Login" method="post">
+            <h3 id="login-header" class="m-0 table-header">Login</h3>
+
+            @if (ViewData.ModelState.ErrorCount > 0)
+            {
+                <div>
+                    @foreach (var modelStateKey in ViewData.ModelState.Keys)
+                    {
+                        if (modelStateKey.StartsWith("Custom_"))
+                        {
+                            foreach (var error in ViewData.ModelState[modelStateKey].Errors)
+                            {
+                                <span class="text-danger">@error.ErrorMessage</span>
+                            }
+                        }
+                    }
+                </div>
+            }
+
+            <div>
+                <label asp-for="Email" class="m-0 mt-4 d-block">Email</label>
+                <input id="email-input" type="text" asp-for="Email" placeholder="abc@gmail.com" value="@Model?.Email" />
+            </div>
+
+            <div>
+                <label asp-for="Password" class="m-0 mt-4 d-block">Password</label>
+                <input id="password-input" type="password" asp-for="Password" placeholder="••••••" value="@Model?.Password"/>
+            </div>
+
+            <input type="hidden" id="device-type" name="device" value="" />
+
+            <div style="text-align: right">
+                <a style="font-style: italic" asp-action="ForgetPassword">Forget password?</a>
+            </div>
+            
+            <div class="mt-4" style ="text-align: right">
+                <button id="register-button" onclick="window.location.href=`${window.location.origin}/Web/RegisterAccount`" type="button" class="mr-3">New Account</button>       
+                <button id="submit-button" type="submit">GO</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    function setScreenWidth() {
+        var deviceType = document.getElementById('device-type');
+
+        if (window.innerWidth < 768) 
+        {
+            deviceType.value = "mobile"
+        }
+        else 
+        {
+            deviceType.value = "non-mobile"
+        }
+    }
+
+    var form = document.getElementById('form');
+    form.addEventListener('submit', setScreenWidth);
+</script>
+
+@if (ViewBag.Animation == "Leave")
+{
+    <script type="text/javascript">
+        setTimeout(
+            function () {
+                window.location.href = "/Web/Task";
+            }, 1200);
+    </script>
+}
